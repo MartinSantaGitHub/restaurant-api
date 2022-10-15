@@ -1,0 +1,22 @@
+{
+    "name": "restaurant-api",
+    "version": "1.0.0",
+    "description": "A REST API server to make food orders to a restaurant",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon app.js",
+        "start": "node app"
+    },
+    "keywords": [],
+    "author": "Martin Santamaria",
+    "license": "MIT",
+    "type": "module",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-validator": "^6.14.2",
+        "mongoose": "^6.6.5"
+    }
+}
