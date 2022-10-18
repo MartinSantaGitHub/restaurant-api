@@ -4,9 +4,10 @@
     "description": "A REST API server to make food orders to a restaurant",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "vitest",
         "dev": "nodemon app.js",
-        "start": "node app"
+        "start": "node app",
+        "coverage": "vitest run --coverage"
     },
     "keywords": [],
     "author": "Martin Santamaria",
@@ -17,6 +18,10 @@
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "express-validator": "^6.14.2",
-        "mongoose": "^6.6.5"
+        "mongoose": "^6.6.5",
+        "node-cron": "^3.0.2"
+    },
+    "devDependencies": {
+        "vitest": "^0.24.3"
     }
 }
