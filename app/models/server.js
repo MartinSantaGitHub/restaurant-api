@@ -1,17 +1,17 @@
 import express from "express";
 import cors from "cors";
 import { dbConnection } from "../database/config.js";
+import UpdateDb from "../database/update-db.js";
 
 export default class Server {
     #port;
     #app;
+    #updateDb;
 
     constructor() {
         this.#port = process.env.APP_PORT;
         this.#app = express();
-
-        // Connect to the DB
-        this.#connectToDb();
+        this.#updateDb = new UpdateDb();
 
         // Configure Middlewares
         this.#middlewares();
@@ -20,7 +20,7 @@ export default class Server {
         this.#routes();
     }
 
-    async #connectToDb() {
+    async connectToDb() {
         await dbConnection();
     }
 
@@ -31,6 +31,24 @@ export default class Server {
     }
 
     #routes() {}
+
+    async updateDb() {
+        try {
+            if (!this.#updateDb.isRequestToken) {
+                await this.#updateDb.setRequestToken();
+            }
+
+            const isUpdateRequestToken = await this.#updateDb.update();
+
+            if (isUpdateRequestToken) {
+                await this.#updateDb.setRequestToken();
+                await this.#updateDb.update(false);
+            }
+        } catch (error) {
+            console.log("Something went wrong when trying to update the DB");
+            console.error(error);
+        }
+    }
 
     run() {
         this.#app.listen(this.#port, () => {

@@ -5,4 +5,11 @@ dotenv.config();
 
 const server = new Server();
 
-server.run();
+// Connect to the DB
+await server.connectToDb();
+
+// Update the DB
+await server.updateDb();
+
+//server.run();
+console.log("End");
