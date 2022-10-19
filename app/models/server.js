@@ -34,6 +34,8 @@ export default class Server {
 
     async updateDb() {
         try {
+            console.log("Start Update DB");
+
             if (!this.#updateDb.isRequestToken) {
                 await this.#updateDb.setRequestToken();
             }
@@ -44,6 +46,8 @@ export default class Server {
                 await this.#updateDb.setRequestToken();
                 await this.#updateDb.update(false);
             }
+
+            console.log("End Update DB");
         } catch (error) {
             console.log("Something went wrong when trying to update the DB");
             console.error(error);
