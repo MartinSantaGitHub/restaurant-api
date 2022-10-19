@@ -2,16 +2,19 @@ import express from "express";
 import cors from "cors";
 import { dbConnection } from "../database/config.js";
 import UpdateDb from "../database/update-db.js";
+import { productsRouter } from "../routes/productsRoutes.js";
 
 export default class Server {
     #port;
     #app;
     #updateDb;
+    #productsPath;
 
     constructor() {
         this.#port = process.env.APP_PORT;
         this.#app = express();
         this.#updateDb = new UpdateDb();
+        this.#productsPath = "/api/products";
 
         // Configure Middlewares
         this.#middlewares();
@@ -30,7 +33,9 @@ export default class Server {
         this.#app.use(express.static("public"));
     }
 
-    #routes() {}
+    #routes() {
+        this.#app.use(this.#productsPath, productsRouter);
+    }
 
     async updateDb() {
         try {

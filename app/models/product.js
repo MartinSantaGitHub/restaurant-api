@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const productSchema = Schema({
+const productSchema = new Schema({
     name: {
         type: String,
         required: [true, "Title is required"],
@@ -27,6 +27,16 @@ const productSchema = Schema({
         },
     ],
 });
+
+productSchema.pre("find", function () {
+    this.populate("categories");
+});
+
+productSchema.methods.toJSON = function () {
+    const { __v, _id, ...product } = this.toObject();
+
+    return product;
+};
 
 const Product = model("Product", productSchema);
 
