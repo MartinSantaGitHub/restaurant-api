@@ -54,6 +54,8 @@ You can run tests with the command `docker-compose run --rm app sh -c "npm test"
 
 This is the ER model of DB
 
+![supermarket](https://user-images.githubusercontent.com/29830077/197031789-3eddba2c-d51b-418e-b13a-fcf86f11bb5c.png)
+
 ## Summary
 
 -   I could have used a relational DB because Mongo was not designed to make relations between entities like I did, but I chose this approach because is easy and fast for creating a simple model.
