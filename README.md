@@ -18,19 +18,21 @@ This REST service pulls products from the public api of **[Kroger Developers](ht
 
 ## Endpoints
 
--   GET Get Product Types
+### GET Get Product Types
 
 http://localhost:8010/api/products/types
 
--   GET Get Products
+### GET Get Products
 
 http://localhost:8010/api/products?type={productType}
 
--   Query Params
+#### Query Params
 
 -   type (optional)
 
--   PATCH Update Stock
+### PATCH Update Stock
+
+http://localhost:8010/api/products
 
 <code>
 {
@@ -39,6 +41,8 @@ http://localhost:8010/api/products?type={productType}
 "quantity": {quantity}
 }
 </code>
+
+<br>
 
 Body Params
 
