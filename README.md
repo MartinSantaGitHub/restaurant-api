@@ -65,3 +65,5 @@ This is the ER model of DB
 -   I would add an endpoint to restock the products whenever it needs.
 
 -   Something I would like to highlight is that I implemented the service using Docker, so there's no need to worry about the OS or the needed libraries to make the service works.
+
+-   Keep in mind that is not good practice to upload the .env file to the repository, but I did it to facilitate the tests on the REST service.

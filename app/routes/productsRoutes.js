@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import {
     productsGet,
-    productsPost,
+    productsPatch,
     typesGet,
 } from "../controllers/productsController.js";
 import {
@@ -18,13 +18,13 @@ productsRouter.get(
     productsGet
 );
 
-productsRouter.post(
+productsRouter.patch(
     "/",
     [check("productId", "The productId is not a valid ID").isMongoId()],
     [check("sizeId", "The sizeId is not a valid ID").isMongoId()],
     [check("quantity", "The quantity must be a number").isNumeric()],
     [check("quantity").custom(isPositiveNumber), validateFields],
-    productsPost
+    productsPatch
 );
 
 productsRouter.get("/types", typesGet);

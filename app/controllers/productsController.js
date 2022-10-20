@@ -19,7 +19,7 @@ const productsGet = async (req = request, res = response) => {
     });
 };
 
-const productsPost = async (req = request, res = response) => {
+const productsPatch = async (req = request, res = response) => {
     const { productId, sizeId, quantity } = req.body;
 
     const stockObj = await Stock.findOne({ product: productId, size: sizeId });
@@ -51,4 +51,4 @@ const typesGet = async (req = request, res = response) => {
     });
 };
 
-export { productsGet, productsPost, typesGet };
+export { productsGet, productsPatch, typesGet };
