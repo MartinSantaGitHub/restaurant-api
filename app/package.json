@@ -1,7 +1,7 @@
 {
-    "name": "restaurant-api",
+    "name": "supermarket-api",
     "version": "1.0.0",
-    "description": "A REST API server to make food orders to a restaurant",
+    "description": "A REST API server to make groceries orders to a supermarket",
     "main": "app.js",
     "scripts": {
         "test": "vitest",
