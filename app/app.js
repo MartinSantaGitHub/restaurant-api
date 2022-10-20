@@ -10,7 +10,7 @@ const server = new Server();
 await server.connectToDb();
 
 // Update the DB
-//await server.updateDb();
+await server.updateDb();
 
 // Schedule to update the DB every day at 00:00 AM
 nodeCron.schedule("0 0 0 * * *", async function () {

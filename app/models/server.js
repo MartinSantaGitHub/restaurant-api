@@ -23,8 +23,8 @@ export default class Server {
         this.#routes();
     }
 
-    async connectToDb() {
-        await dbConnection();
+    get getApp() {
+        return this.#app;
     }
 
     #middlewares() {
@@ -35,6 +35,10 @@ export default class Server {
 
     #routes() {
         this.#app.use(this.#productsPath, productsRouter);
+    }
+
+    async connectToDb() {
+        await dbConnection();
     }
 
     async updateDb() {
