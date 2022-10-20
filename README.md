@@ -26,23 +26,25 @@ http://localhost:8010/api/products/types
 
 http://localhost:8010/api/products?type={productType}
 
-Query Params
+-   Query Params
 
-type (optional)
+-   type (optional)
 
 -   PATCH Update Stock
 
+<code>
 {
 "productId": {Product Mongo Id},
 "sizeId": {Size Mongo Id},
 "quantity": {quantity}
 }
+</code>
 
 Body Params
 
-productId (required) - Must be a valid Mongo Id
-sizeId (required) - Must be a valid Mongo Id
-quantity (required) - Must be number greater than zero.
+-   productId (required) - Must be a valid Mongo Id
+-   sizeId (required) - Must be a valid Mongo Id
+-   quantity (required) - Must be number greater than zero.
 
 You cannot update the stock if the quantity goes over the current available stock
 
