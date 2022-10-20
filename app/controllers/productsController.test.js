@@ -11,7 +11,6 @@ describe("productController", () => {
 
         expect(result.statusCode).toEqual(200);
         expect(result.body.meta).toStrictEqual({ total: 0 });
-        expect(result.body.stocks).toStrictEqual([]);
     });
 
     it("Should get some results -> productsGet", async () => {
@@ -32,29 +31,31 @@ describe("productController", () => {
         expect(result.body.stocks.length).toBe(2);
     });
 
-    it("Should get bad request error (missing fields) -> productsPost", async () => {
+    it("Should get bad request error (missing fields) -> productsPatch", async () => {
         const server = new Server();
-        const result = await request(server.getApp).post("/api/products");
+        const result = await request(server.getApp).patch("/api/products");
 
         expect(result.statusCode).toEqual(400);
         expect(result.body.errors.length).toBe(4);
     });
 
-    it("Should get bad request error (insufficient stock) -> productsPost", async () => {
+    it("Should get bad request error (insufficient stock) -> productsPatch", async () => {
         Stock.findOne.mockImplementation(async () => ({ stock: 5 }));
 
         const server = new Server();
-        const result = await request(server.getApp).post("/api/products").send({
-            productId: "635026cf60ddb7843b379bf5",
-            sizeId: "635026cf60ddb7843b379bf9",
-            quantity: 9,
-        });
+        const result = await request(server.getApp)
+            .patch("/api/products")
+            .send({
+                productId: "635026cf60ddb7843b379bf5",
+                sizeId: "635026cf60ddb7843b379bf9",
+                quantity: 9,
+            });
 
         expect(result.statusCode).toEqual(400);
         expect(result.body.message).contains("Insufficient stock");
     });
 
-    it("Should update results -> productsPost", async () => {
+    it("Should update results -> productsPatch", async () => {
         Stock.findOne.mockImplementation(async () => ({
             stock: 5,
             product: {
@@ -67,11 +68,13 @@ describe("productController", () => {
         }));
 
         const server = new Server();
-        const result = await request(server.getApp).post("/api/products").send({
-            productId: "635026cf60ddb7843b379bf5",
-            sizeId: "635026cf60ddb7843b379bf9",
-            quantity: 3,
-        });
+        const result = await request(server.getApp)
+            .patch("/api/products")
+            .send({
+                productId: "635026cf60ddb7843b379bf5",
+                sizeId: "635026cf60ddb7843b379bf9",
+                quantity: 3,
+            });
 
         expect(result.statusCode).toEqual(200);
         expect(result.body.quantity).toBe(3);

@@ -24,6 +24,12 @@ const productsPatch = async (req = request, res = response) => {
 
     const stockObj = await Stock.findOne({ product: productId, size: sizeId });
 
+    if (!stockObj) {
+        return res.status(200).json({
+            message: "Product not available",
+        });
+    }
+
     if (!(stockObj.stock >= quantity)) {
         return res.status(400).json({
             message: `Insufficient stock - Total: ${stockObj.stock}`,
