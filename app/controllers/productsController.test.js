@@ -39,6 +39,22 @@ describe("productController", () => {
         expect(result.body.errors.length).toBe(4);
     });
 
+    it("Should get bad request error (product does not exist) -> productsPatch", async () => {
+        Stock.findOne.mockImplementation(async () => null);
+
+        const server = new Server();
+        const result = await request(server.getApp)
+            .patch("/api/products")
+            .send({
+                productId: "635026cf60ddb7843b379bf6",
+                sizeId: "635026cf60ddb7843b379bf9",
+                quantity: 9,
+            });
+
+        expect(result.statusCode).toEqual(400);
+        expect(result.body.message).contains("product does not exist");
+    });
+
     it("Should get bad request error (insufficient stock) -> productsPatch", async () => {
         Stock.findOne.mockImplementation(async () => ({ stock: 5 }));
 

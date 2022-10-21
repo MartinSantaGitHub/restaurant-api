@@ -20,10 +20,13 @@ productsRouter.get(
 
 productsRouter.patch(
     "/",
-    [check("productId", "The productId is not a valid ID").isMongoId()],
-    [check("sizeId", "The sizeId is not a valid ID").isMongoId()],
-    [check("quantity", "The quantity must be a number").isNumeric()],
-    [check("quantity").custom(isPositiveNumber), validateFields],
+    [
+        check("productId", "The productId is not a valid ID").isMongoId(),
+        check("sizeId", "The sizeId is not a valid ID").isMongoId(),
+        check("quantity", "The quantity must be a number").isNumeric(),
+        check("quantity").custom(isPositiveNumber),
+        validateFields,
+    ],
     productsPatch
 );
 

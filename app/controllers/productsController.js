@@ -21,12 +21,11 @@ const productsGet = async (req = request, res = response) => {
 
 const productsPatch = async (req = request, res = response) => {
     const { productId, sizeId, quantity } = req.body;
-
     const stockObj = await Stock.findOne({ product: productId, size: sizeId });
 
     if (!stockObj) {
-        return res.status(200).json({
-            message: "Product not available",
+        return res.status(400).json({
+            message: "The product does not exist",
         });
     }
 
