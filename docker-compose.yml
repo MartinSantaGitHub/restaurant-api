@@ -5,7 +5,7 @@ services:
     container_name: "app_container"
     image: "app:1.0"
     env_file:
-      - ./app/.env
+      - .env
     build:
       context: .
     ports:
@@ -25,7 +25,7 @@ services:
     ports:
       - "${DB_PORT}:27017"
     env_file:
-      - ./app/.env
+      - .env
     volumes:
       - db-data:/data/db
 
