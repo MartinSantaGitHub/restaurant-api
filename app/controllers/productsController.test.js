@@ -2,9 +2,8 @@ import { describe, it, expect } from "vitest";
 import request from "supertest";
 import Server from "../models/server.js";
 import { Stock } from "../models/stock.js";
-import { Product } from "../models/product.js";
 
-describe("productController", () => {
+describe("productsController", () => {
     it("Should get empty results -> productsGet", async () => {
         const server = new Server();
         const result = await request(server.getApp).get("/api/products");
@@ -94,19 +93,5 @@ describe("productController", () => {
 
         expect(result.statusCode).toEqual(200);
         expect(result.body.quantity).toBe(3);
-    });
-
-    it("Should get results -> typesGet", async () => {
-        Product.find.mockImplementation(async () => [
-            { type: "cheese" },
-            { type: "milk" },
-        ]);
-
-        const server = new Server();
-        const result = await request(server.getApp).get("/api/products/types");
-
-        expect(result.statusCode).toEqual(200);
-        expect(result.body.meta).toStrictEqual({ total: 2 });
-        expect(result.body.types.length).toBe(2);
     });
 });

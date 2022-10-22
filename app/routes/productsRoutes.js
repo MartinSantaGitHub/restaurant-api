@@ -3,7 +3,6 @@ import { check } from "express-validator";
 import {
     productsGet,
     productsPatch,
-    typesGet,
 } from "../controllers/productsController.js";
 import {
     isPositiveNumber,
@@ -29,7 +28,5 @@ productsRouter.patch(
     ],
     productsPatch
 );
-
-productsRouter.get("/types", typesGet);
 
 export { productsRouter };

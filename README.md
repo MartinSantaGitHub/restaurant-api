@@ -20,7 +20,7 @@ This REST service pulls products from the public api of **[Kroger Developers](ht
 
 ### GET Get Product Types
 
-http://localhost:8010/api/products/types
+http://localhost:8010/api/types
 
 ### GET Get Products
 

@@ -44,16 +44,4 @@ const productsPatch = async (req = request, res = response) => {
     });
 };
 
-const typesGet = async (req = request, res = response) => {
-    const products = await Product.find();
-    let types = products.map((p) => p.type);
-
-    types = [...new Set(types)];
-
-    res.json({
-        types,
-        meta: { total: types.length },
-    });
-};
-
-export { productsGet, productsPatch, typesGet };
+export { productsGet, productsPatch };
